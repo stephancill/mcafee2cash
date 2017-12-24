@@ -12,26 +12,38 @@ with open("secrets.json") as f:
 
 class TelegramBot:
 	def __init__(self, chat_id=176900492, order_callback=lambda x: x):
-		self.chat_id = chat_id
 		self.order_callback = order_callback
 		self.bot = telepot.Bot(BOT_TOKEN)
 		self.bittrex_utils = BittrexUtils()
 		self.buying = None
+		self.chat_id = None
 		MessageLoop(self.bot, {
 			"chat" : self.chat_handler,
 			"callback_query": self.callback_query_handler
 		}).run_as_thread()
+
+		try:
+			with open(".chats", "r") as f:
+				self.chat_id = int(f.readlines()[0].strip())
+				print(self.chat_id)
+		except FileNotFoundError:
+			print("No authenticated chats")
+		except Exception as e:
+			print(e)
 		print("Running bot...")
+
+	def register_chat(self, chat_id):
+		with open(".chats", "w") as f:
+			f.write(str(chat_id))
+			self.chat_id = chat_id
 	
 	def get_chat_replies(self, msg):
 		replies = []
 		if msg["text"] == "/start":
-			reply = ("I will notify you when crypto people tweet and give you buying options.", None)
-			replies.append(reply)
+			replies.append(("I will notify you when crypto people tweet and give you buying options.", None))
 		elif msg["text"] == "/cancel" and self.buying:
 			self.buying = None
-			reply = ("Cancelled buy.", None)
-			replies.append(reply)
+			replies.append(("Cancelled buy.", None))
 		elif self.buying:
 			try:
 				amount = float(msg["text"])
@@ -64,8 +76,18 @@ class TelegramBot:
 
 	def chat_handler(self, msg):
 		content_type, chat_type, chat_id = telepot.glance(msg)
-		if not chat_id == self.chat_id:
+		
+		if content_type != "text":
 			return
+
+		# Authentication
+		if chat_id != self.chat_id:
+			if msg["text"] == BOT_TOKEN:
+				self.register_chat(chat_id)
+				self.bot.sendMessage(chat_id, "Authenticated.")
+			else:
+				self.bot.sendMessage(chat_id, "Not authenticated. Send me this bot token to authenticate this chat.")
+				return
 
 		replies = self.get_chat_replies(msg)
 
@@ -76,6 +98,10 @@ class TelegramBot:
 	def callback_query_handler(self, msg):
 		query_id, from_id, query_data = telepot.glance(msg, flavor="callback_query")
 		
+		if not self.chat_id:
+			self.bot.sendMessage(chat_id, "Not authenticated. Send me this bot token to authenticate this chat.")
+			return
+
 		self.bot.answerCallbackQuery(query_id, text='Got it')
 
 		replies = self.get_query_replies(query_data)
