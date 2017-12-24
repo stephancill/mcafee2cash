@@ -30,5 +30,8 @@ A stream is configured to listen to new tweets by user IDs specified in `config.
 2. Send your bot token to the bot to authenticate your chat
 3. Wait for McAfee to pump a coin
 
+## Contributing
+Contributions welcome. Open a pull request!
+
 ## License
 MIT License
