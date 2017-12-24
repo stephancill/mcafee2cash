@@ -1,14 +1,34 @@
 # mcafee2cash
-Listens for tweets on Twitter, parses them and identifies sentiment, communicates back to you via Telegram bot and provides buying functionality that interfaces with the Bittrext public API.
+* Listen for tweets from @JohnMcAfee
+* Check if tweet contains a symbol listed on Bittrex
+* Analyze sentiment
+* Buy on Bittrex if good (TODO)
+* Sell 24 hours later (TODO)
+
+APIs used:
+* Twitter (tweepy)
+* Telegram (telepot)
+* Bittrex (python-bittrex)
+
+## How it works
+A stream is configured to listen to new tweets by user IDs specified in `config.json`. When it receives a tweet, it checks if any coins that trade on Bittrex are mentioned, analyzes the overall sentiment and determines which coins you should buy. The Telegram bot then sends you a message with those buying options and allows you to inspect a market summary of all the buying options. Along with the market summary, it provides you with a button that you can press to buy the coin on Bittrex and asks you to specify how much (in BTC) you would like to spend and places a buy order at the asking price.
 
 ## Setup
 1. `git clone https://github.com/stephancill/mcafee2cash.git`
 2. `cd mcafee2cash`
 3. `pipenv install`
 4. Populate `secrets.json`
-5. `pipenv run python main.py`
+5. Modify `config.json` (optional)
 
-### `secrets.json`
+### `secrets.json` info
 * Bittrex - Create a [Bittrex](https://bittrex.com/Manage#sectionApi) API key with `READ INFO,	TRADE LIMIT,	TRADE MARKET` permissions
 * Telegram - Create a bot by talking to [@BotFather](http://t.me/botfather)
 * Twitter - Create a new Twitter app at https://apps.twitter.com/app/new
+
+## Usage
+1. Start the service using `pipenv run python main.py`
+2. Send your bot token to the bot to authenticate your chat
+3. Wait for McAfee to pump a coin
+
+## License
+MIT License
