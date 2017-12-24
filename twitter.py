@@ -3,6 +3,10 @@ from tweepy import OAuthHandler
 from tweepy import Stream
 import json
 
+with open("config.json") as f:
+	config = json.load(f)
+	FOLLOW_IDS = config["TWITTER_FOLLOW_IDS"]
+
 with open("secrets.json") as f:
 	keys = json.load(f) 
 	CONSUMER_KEY = keys["TWITTER_CONSUMER_KEY"]
@@ -18,9 +22,8 @@ class TwitterListener(StreamListener):
 		tweet_json = json.loads(data)
 		self.callback(tweet_json)
 		
-
 class Twitter:
-	def __init__(self, ids=["944717267304108032"], tweet_callback=lambda x: x):
+	def __init__(self, ids=FOLLOW_IDS, tweet_callback=lambda x: x):
 		self.tweet_callback = tweet_callback
 		
 		self.listener = TwitterListener(self.handle_tweet)
