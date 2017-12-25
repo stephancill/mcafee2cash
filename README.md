@@ -2,8 +2,8 @@
 * Listen for tweets from @JohnMcAfee
 * Check if tweet contains a symbol listed on Bittrex
 * Analyze sentiment
-* Buy on Bittrex if good (TODO)
-* Sell 24 hours later (TODO)
+* Buy on Bittrex if good
+* Set a selling target
 
 APIs used:
 * Twitter (tweepy)
