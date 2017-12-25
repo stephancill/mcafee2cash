@@ -1,3 +1,4 @@
 *secrets.json
 __pycache__
 .chats
+*config.json
