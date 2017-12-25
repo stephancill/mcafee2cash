@@ -18,7 +18,7 @@ A stream is configured to listen to new tweets by user IDs specified in `config.
 ## Setup
 1. `git clone https://github.com/stephancill/mcafee2cash.git`
 2. `cd mcafee2cash`
-3. `pipenv install`
+3. `pipenv install` (if this fails, delete `Pipfile.lock` and try again)
 4. Populate `secrets.json`
 5. Modify `config.json` (optional)
 
