@@ -2,8 +2,8 @@
 * Listen for tweets from @JohnMcAfee
 * Check if tweet contains a symbol listed on Bittrex
 * Analyze sentiment
-* Buy on Bittrex if good
-* Set a selling target
+* Suggest to user via Telegram bot if good
+* Allow user to make buy order and set selling target once buy order fills
 
 APIs used:
 * Twitter (tweepy)
