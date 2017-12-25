@@ -43,8 +43,14 @@ class TelegramBot:
 	
 	def get_chat_replies(self, msg):
 		replies = []
+		
+		# /start
 		if msg["text"] == "/start":
 			replies.append(("I will notify you when crypto people tweet and give you buying options.", None))
+		
+		# /help
+		elif msg["text"][:len("/help")] == "/help":
+			replies.append((f'Order management:\n/orderstatus ORDER_UUID - Order status\n/cancelorder ORDER_UUID - Cancel order\n/getopenorders - Get open orders', None))
 		
 		# /orderstatus
 		elif msg["text"][:len("/orderstatus")] == "/orderstatus":

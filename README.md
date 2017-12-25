@@ -33,6 +33,7 @@ Command shortcuts to register with BotFather
 orderstatus - Usage: /orderstatus ORDER_UUID (Get status of limit order)
 cancelorder - Usage: /cancelorder ORDER_UUID (Cancel order)
 getopenorders - Usage: /getopenorders (List open orders)
+help - Get help with order management
 ```
 
 ## Usage
