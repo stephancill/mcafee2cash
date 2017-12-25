@@ -67,7 +67,7 @@ class TelegramBot:
 					raise Exception(f'Response returned false')
 				replies.append((f'Canceled order {uuid}.', None))
 			except IndexError:
-				replies.append((f'The syntax for this command is "/orderstatus ORDER_UUID"', None))
+				replies.append((f'The syntax for this command is "/cancelorder ORDER_UUID"', None))
 			except Exception as e:
 				replies.append((f'Could not cancel order {uuid}. (Exception: {e})', None))
 		
@@ -168,7 +168,6 @@ class TelegramBot:
 				keyboard = InlineKeyboardMarkup(inline_keyboard=[buttons])
 
 				replies.append((f'Buying {quantity} {coin} @ {"{0:.8f}".format(price)} BTC for total {amount} BTC.\n\nOrder UUID: {uuid}', None))
-				replies.append((f'Order management:\n/orderstatus ORDER_UUID - Order status\n/cancelorder ORDER_UUID - Cancel order\n/getopenorders - Get open orders', None))
 			except Exception as e:
 				replies.append((f'An error ocurred. Please try again (Exception: {e})', None))
 
@@ -196,12 +195,10 @@ class TelegramBot:
 			
 			# Sell
 			uuid = self.bittrex_utils.create_sell_order(pair, quantity, price)
-			
-			# Selling option keyboard
+
 			replies.append((f'Selling {quantity} {coin} @ {"{0:.8f}".format(price)} BTC for total {amount} BTC.\n\nOrder UUID: {uuid}', None))
-			replies.append((f'Order management:\n/orderstatus ORDER_UUID - Order status\n/cancelorder ORDER_UUID - Cancel order\n/getopenorders - Get open orders', None))
-			
 			self.selling = None
+
 		elif query_type == "sell:cancel":
 			self.selling = None
 			replies.append(("Cancelled order.", None))
