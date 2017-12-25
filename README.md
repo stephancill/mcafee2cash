@@ -20,8 +20,9 @@ A stream is configured to listen to new tweets by user IDs specified in `config.
 2. `cd mcafee2cash`
 3. `pipenv --three`
 4. `pipenv install` (if this fails, delete `Pipfile.lock` and try again)
-5. Populate `secrets.json`
-6. Modify `config.json` (optional)
+5. `pipenv run "python -m textblob.download_corpora"` to download sentiment analysis dependencies
+6. Populate `secrets.json`
+7. Modify `config.json` (optional)
 
 ### `secrets.json` info
 * Bittrex - Create a [Bittrex](https://bittrex.com/Manage#sectionApi) API key with `READ INFO,	TRADE LIMIT,	TRADE MARKET` permissions
