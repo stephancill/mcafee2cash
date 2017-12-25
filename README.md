@@ -18,9 +18,10 @@ A stream is configured to listen to new tweets by user IDs specified in `config.
 ## Setup
 1. `git clone https://github.com/stephancill/mcafee2cash.git`
 2. `cd mcafee2cash`
-3. `pipenv install` (if this fails, delete `Pipfile.lock` and try again)
-4. Populate `secrets.json`
-5. Modify `config.json` (optional)
+3. `pipenv --three`
+4. `pipenv install` (if this fails, delete `Pipfile.lock` and try again)
+5. Populate `secrets.json`
+6. Modify `config.json` (optional)
 
 ### `secrets.json` info
 * Bittrex - Create a [Bittrex](https://bittrex.com/Manage#sectionApi) API key with `READ INFO,	TRADE LIMIT,	TRADE MARKET` permissions
