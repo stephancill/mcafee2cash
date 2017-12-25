@@ -27,6 +27,14 @@ A stream is configured to listen to new tweets by user IDs specified in `config.
 * Telegram - Create a bot by talking to [@BotFather](http://t.me/botfather)
 * Twitter - Create a new Twitter app at https://apps.twitter.com/app/new
 
+### Telegram bot commands
+Command shortcuts to register with BotFather
+```
+orderstatus - Usage: /orderstatus ORDER_UUID (Get status of limit order)
+cancelorder - Usage: /cancelorder ORDER_UUID (Cancel order)
+getopenorders - Usage: /getopenorders (List open orders)
+```
+
 ## Usage
 1. Start the service using `pipenv run python main.py`
 2. Send your bot token to the bot to authenticate your chat
