@@ -20,10 +20,11 @@ class TwitterListener(StreamListener):
 
 	def on_data(self, data):
 		tweet_json = json.loads(data)
-		self.callback(tweet_json)
+		if tweet_json["user"]["id_str"] in FOLLOW_IDS:
+			self.callback(tweet_json)
 		
 class Twitter:
-	def __init__(self, ids=FOLLOW_IDS, tweet_callback=lambda x: x):
+	def __init__(self, tweet_callback=lambda x, y, z: x):
 		self.tweet_callback = tweet_callback
 		
 		self.listener = TwitterListener(self.handle_tweet)
@@ -32,13 +33,12 @@ class Twitter:
 		self.auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 
 		self.stream = Stream(self.auth, self.listener)	
-		self.stream.filter(follow=ids)
+		self.stream.filter(follow=FOLLOW_IDS)
 	
 	def handle_tweet(self, tweet_json):
 		screen_name = tweet_json["user"]["screen_name"]
 		id = tweet_json["id_str"]
 		text = tweet_json["text"]
 		link = f'https://twitter.com/{screen_name}/status/{id}'
+		print(tweet_json)
 		self.tweet_callback(text, screen_name, link)
-
-	

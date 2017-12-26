@@ -3,9 +3,7 @@
 * Check if tweet contains a symbol listed on Bittrex
 * Analyze sentiment
 * Suggest to user via Telegram bot if good
-* Allow user to make buy order and set selling target once buy order fills *
-
-***Available on `dev` branch**
+* Allow user to make buy order and set selling target once buy order fills
 
 APIs used:
 * Twitter (tweepy)
@@ -33,6 +31,15 @@ A stream is configured to listen to new tweets by user IDs specified in `config.
 * Bittrex - Create a [Bittrex](https://bittrex.com/Manage#sectionApi) API key with `READ INFO,	TRADE LIMIT,	TRADE MARKET` permissions
 * Telegram - Create a bot by talking to [@BotFather](http://t.me/botfather)
 * Twitter - Create a new Twitter app at https://apps.twitter.com/app/new
+
+### Telegram bot commands
+Command shortcuts to register with BotFather
+```
+orderstatus - Usage: /orderstatus ORDER_UUID (Get status of limit order)
+cancelorder - Usage: /cancelorder ORDER_UUID (Cancel order)
+getopenorders - Usage: /getopenorders (List open orders)
+help - Get help with order management
+```
 
 ## Usage
 1. Start the service using `pipenv run python main.py`
