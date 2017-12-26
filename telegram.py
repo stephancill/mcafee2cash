@@ -255,5 +255,5 @@ class TelegramBot:
 	def notify_tweet(self, tweet_text, user, link, to_buy):
 		buying_options = [InlineKeyboardButton(text=f'{x[1][0].upper()}{x[1][1:]} ({x[0]})', callback_data=f'summary_{x[0]}') for x in to_buy]
 		keyboard = InlineKeyboardMarkup(inline_keyboard=[buying_options])
-		message = f'{user}: "{tweet_text}"\n({link})'
+		message = f'{user}: {link}'
 		self.bot.sendMessage(self.chat_id, message, reply_markup=keyboard)
