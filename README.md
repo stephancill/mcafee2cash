@@ -13,6 +13,7 @@ APIs used:
 If you get stuck, don't hesitate to open an issue or message me on Twitter [@stephancill](https://twitter.com/stephancill)
 
 ## TODO
+* [ ] OCR for tweets with pictures
 * [ ] Set default amount to buy in config
 * [ ] Timed orders (e.g. sell after 30 min)
 * [ ] General order management (/neworder)
