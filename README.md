@@ -2,8 +2,8 @@
 * Listen for tweets from @JohnMcAfee
 * Check if tweet contains a symbol listed on Bittrex
 * Analyze sentiment
-* Buy on Bittrex if good (TODO)*
-* Sell 24 hours later (TODO)*
+* Suggest to user via Telegram bot if good
+* Allow user to make buy order and set selling target once buy order fills *
 
 ***Available on `dev` branch**
 
