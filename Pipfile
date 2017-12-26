@@ -16,6 +16,8 @@ requests = "*"
 telepot = "*"
 tweepy = "*"
 python-bittrex = "*"
+pillow = "*"
+pytesseract = "*"
 
 
 [requires]
