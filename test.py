@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 import main
-from telegram import TelegramBot
-import telepot
+import json
 import sys
+import telepot
+from telegram import TelegramBot
+from twitter import Twitter
 import time
 
 def test_get_coins_bittrex():
@@ -118,6 +120,43 @@ def test_telegram_buy():
 	except Exception as e:
 		raise AssertionError(e)
 
+def test_tweet_handler():
+	with open("test-data.json") as f:
+		sample_tweets = json.load(f)
+	
+	Twitter.handle_tweet(None, tweet_json=sample_tweets["tweet_image"])
+
+def test_main():
+	with open("test-data.json") as f:
+		sample_tweets = json.load(f)
+
+	# Populate coins
+	main.get_coins_bittrex()
+	# Telegram bot
+	bot = TelegramBot()
+	# Twitter stream
+	class MockTwitter:
+		def tweet_callback(text, user, link):
+			to_buy = main.analyze(text)
+			assert len(to_buy) > 0
+			bot.notify_tweet(text, user, link, to_buy)
+	
+	tweets = [
+		sample_tweets["tweet_image"],
+		sample_tweets["tweet_text"]
+	]
+
+	count = 0
+	for tweet in tweets:
+		Twitter.handle_tweet(MockTwitter, tweet_json=tweet)
+		count += 1
+
+	while count < len(tweets):
+		time.sleep(1)
+
+def test_twitter():
+	twitter = Twitter()
+
 if __name__ == "__main__":
 	tests = {
 		"get_coins_bittrex": test_get_coins_bittrex,
@@ -126,12 +165,15 @@ if __name__ == "__main__":
 		"get_verdict": test_get_verdict,
 		"analyze": test_analyze,
 		"telegram_summary": test_telegram_summary,
-		"telegram_buy": test_telegram_buy
+		"telegram_buy": test_telegram_buy,
+		"tweet_handler": test_tweet_handler
 	}
 	test_queue = {}
 	try:
 		if "(" in sys.argv[1]:
 			eval(sys.argv[1])
+			print("Test passed.")
+			sys.exit()
 		elif len(sys.argv[1:]) == 0:
 			raise IndexError
 		for test_name in sys.argv[1:]:
@@ -140,6 +182,8 @@ if __name__ == "__main__":
 		raise e
 	except IndexError:
 		test_queue = tests
+	except Exception as e:
+		raise e
 	
 	for test_name in test_queue.keys():
 		try:
