@@ -12,6 +12,11 @@ APIs used:
 
 If you get stuck, don't hesitate to open an issue or message me on Twitter [@stephancill](https://twitter.com/stephancill)
 
+## TODO
+* [ ] Set default amount to buy in config
+* [ ] Timed orders (e.g. sell after 30 min)
+* [ ] General order management (/neworder)
+
 ## How it works
 A stream is configured to listen to new tweets by user IDs specified in `config.json`. When it receives a tweet, it checks if any coins that trade on Bittrex are mentioned, analyzes the overall sentiment and determines which coins you should buy. The Telegram bot then sends you a message with those buying options and allows you to inspect a market summary of all the buying options. Along with the market summary, it provides you with a button that you can press to buy the coin on Bittrex and asks you to specify how much (in BTC) you would like to spend and places a buy order at the asking price.
 
