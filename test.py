@@ -17,12 +17,14 @@ def test_extract_symbols():
 	texts = [
 		'Coin of the day: Digibyte (DGB). Using a Blockchain which is 40 times faster than Bitcoin and having one of the most decentralized mining systems in the world - based on 5 different synergistic algorithms. DGB adherents call the coin "The Sleeping Giant".',
 		'Yes, there are 1,500+ coins now. And yes, most  are jokes or outright scams. But among those coins are Ethereum, Monero, Litecoin and other proven winners. By implying Sether is a joke is a huge mistake. Go to sether.io and read it. You will see it is in the mold of a winner.',
-		'Coin of the day: BURST -- First truly Green coin and most overlooked coin. Uses 400 times less power than Bitcoin. Super secure and private. Includes smart contracts, encrypted messaging, decentralized wallet, libertine blockchain. Most undervalued coin. https://www.burst-coin.org '
+		'Coin of the day: BURST -- First truly Green coin and most overlooked coin. Uses 400 times less power than Bitcoin. Super secure and private. Includes smart contracts, encrypted messaging, decentralized wallet, libertine blockchain. Most undervalued coin. https://www.burst-coin.org ',
+		'Coin of the day: $DOGE'
 	]
 	symbols = [
 		set([('BTC', 'bitcoin'), ('DGB', 'digibyte')]),
 		set([('XMR', 'monero'), ('LTC', 'litecoin'), ('ETH', 'ethereum')]),
-		set([('BURST', 'burstcoin'), ('BTC', 'bitcoin')])
+		set([('BURST', 'burstcoin'), ('BTC', 'bitcoin')]),
+		set([('DOGE', 'dogecoin')])
 	]
 
 	for i, text in enumerate(texts):
