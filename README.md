@@ -1,5 +1,5 @@
 # mcafee2cash
-* Listen for tweets from @JohnMcAfee
+* Listen for tweets from @officialmcafee
 * Check if tweet contains a symbol listed on Bittrex
 * Analyze sentiment
 * Suggest to user via Telegram bot if good
