@@ -33,7 +33,7 @@ McAfee doesn't only tweet the coin of the day. A Telegram bot is merely a conser
 ## Setup
 1. `git clone https://github.com/stephancill/mcafee2cash.git`
 2. `cd mcafee2cash`
-3. `pipenv install --three` (if this fails, delete `Pipfile.lock` and try again)
+3. `pipenv install` (if this fails, delete `Pipfile.lock` and try again)
 4. `pipenv run "python -m textblob.download_corpora"` to download sentiment analysis dependencies
 5. Populate `secrets.json`
 6. Modify `config.json` (optional)
