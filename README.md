@@ -1,5 +1,5 @@
 # mcafee2cash
-* Listen for tweets from @JohnMcAfee
+* Listen for tweets from @officialmcafee
 * Check if tweet contains a symbol listed on Bittrex
 * Analyze sentiment
 * Suggest to user via Telegram bot if good
@@ -20,6 +20,11 @@ If you get stuck, don't hesitate to open an issue or message me on Twitter [@ste
 
 ## How it works
 A stream is configured to listen to new tweets by user IDs specified in `config.json`. When it receives a tweet, it checks if any coins that trade on Bittrex are mentioned, analyzes the overall sentiment and determines which coins you should buy. The Telegram bot then sends you a message with those buying options and allows you to inspect a market summary of all the buying options. Along with the market summary, it provides you with a button that you can press to buy the coin on Bittrex and asks you to specify how much (in BTC) you would like to spend and places a buy order at the asking price.
+
+### Why not just automatically buy?
+McAfee doesn't only tweet the coin of the day. A Telegram bot is merely a conservative approach to prevent the bot from making stupid trades. E.g.
+
+![McAfee's hacked twitter account](https://i.imgur.com/wpUc08R.png)
 
 ## Requirements
 * Python 3.6
