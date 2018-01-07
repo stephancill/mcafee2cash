@@ -12,6 +12,7 @@ APIs used:
 
 If you get stuck, don't hesitate to open an issue or message me on Twitter [@stephancill](https://twitter.com/stephancill)
 
+Disclaimer: I do not endorse the influence McAfee’s tweets have on the crypto market. I think it’s very dangerous for one person to have the power to manipulate markets the way he does.
 ## TODO
 * [x] OCR for tweets with pictures
 * [ ] Set default amount to buy in config
